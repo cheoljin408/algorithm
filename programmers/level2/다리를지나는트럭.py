@@ -1,6 +1,5 @@
 def solution(bridge_length, weight, truck_weights):
     answer = 0
-    cnt = 0
 
     bridge = []
     for _ in range(bridge_length):
@@ -12,12 +11,12 @@ def solution(bridge_length, weight, truck_weights):
             bridge.append(truck_weights.pop(0))
         else:
             bridge.append(0)
-        cnt += 1
+        answer += 1
 
     while bridge:
-        cnt += 1
+        answer += 1
         bridge.pop()
-    answer = cnt
+
     return answer
 
 print(solution(2, 10, [7, 4, 5, 6]))
