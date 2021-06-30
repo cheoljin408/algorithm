@@ -15,7 +15,7 @@ def solution(numbers):
         s_nums = set(nums)
         answer = 0
         for j in s_nums:
-            if j >= 3:
+            if j >= 2:
                 flag = True
                 for k in range(2, j):
                     if j % k == 0:
@@ -23,7 +23,6 @@ def solution(numbers):
                         break
                 if flag:
                     answer += 1
-                    print(answer)
 
     return answer
 
