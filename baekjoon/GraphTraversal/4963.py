@@ -1,3 +1,5 @@
+import sys
+sys.setrecursionlimit(100000)
 def dfs(x, y):
     if x <= -1 or x >= M or y <= -1 or y >= N:
         return False
