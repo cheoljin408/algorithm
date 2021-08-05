@@ -1,24 +1,39 @@
-n, m, k = map(int, input().split())
-nums = list(map(int, input().split()))
+from collections import deque
+import sys
 
-nums.sort()
+N, M, K, X = map(int, sys.stdin.readline().split())
 
-first = nums[-1]
-second = nums[-2]
+graph = []
+for i in range(N+1):
+    graph.append([])
 
-print(first, second)
+for i in range(M):
+    town, link = map(int, sys.stdin.readline().split())
+    graph[town].append(link)
 
-sum = 0
+visited = [False] * (N+1)
+answer = []
 
-while True:
-    for i in range(k):
-        if m == 0:
-            break
-        sum += first
-        m -= 1
-    if m == 0:
-        break
-    sum += second
-    m -= 1
+def bfs(x):
+    queue = deque()
+    queue.append((x, 0))
 
-print(sum)
+    while queue:
+        v, cnt = queue.popleft()
+
+        for i in graph[v]:
+            if not visited[i]:
+                visited[i] = True
+                queue.append((i, cnt + 1))
+        
+        if cnt == K:
+            answer.append(v)
+
+bfs(X)
+
+if len(answer) == 0:
+    print(-1)
+else:
+    # answer.sort()
+    for i in answer:
+        print(i)
