@@ -2,6 +2,24 @@ import collections
 import re
 class Solution:
     def isPalindrome(self, s: str) -> bool:
+        # 나의 풀이
+        s = list(s)
+        only_char = []
+        answer = False
+        for i in s:
+            if i.isdigit():
+                only_char.append(i)
+            if i.isalpha():
+                only_char.append(i.lower())
+
+        origin = only_char
+        reverse_origin = only_char[::-1]
+
+        if origin == reverse_origin:
+            answer = True
+
+        return answer
+        #-------------------------------
         # 풀이1 리스트로 변환
         # s = list(s)
         # only_char = []
@@ -30,10 +48,10 @@ class Solution:
         # return True
         # ----------------------------
         # 풀이3 슬라이싱 사용
-        s = s.lower()
+        # s = s.lower()
         # 정규식으로 불필요한 문자 필터링
-        s = re.sub('[^a-z0-9]', '', s)
-        return s == s[::-1]
+        # s = re.sub('[^a-z0-9]', '', s)
+        # return s == s[::-1]
 
 
 solution = Solution()
