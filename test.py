@@ -1,39 +1,32 @@
-from collections import deque
-import sys
+data1 = [ ["고구마",25000],
+         ["바나나",123232],
+         ["파인애플",4500],
+         ["감자",3000],
+         ["금귤",6000] ]
+print(data1)
 
-N, M, K, X = map(int, sys.stdin.readline().split())
+data1.sort(key=lambda x: x[0])
+print(data1)
 
-graph = []
-for i in range(N+1):
-    graph.append([])
+data1.sort(key=lambda x: x[1])
+print(data1)
 
-for i in range(M):
-    town, link = map(int, sys.stdin.readline().split())
-    graph[town].append(link)
+data2 = ["나라","가구","봄","가을","도토리","낫","혹","가을 아침","나는 밥을 먹고 있다."]
+print(data2)
 
-visited = [False] * (N+1)
-answer = []
+data2.sort(key=lambda x: len(x))
+print(data2)
 
-def bfs(x):
-    queue = deque()
-    queue.append((x, 0))
+data2.sort(key=lambda x: (len(x), x))
+print(data2)
 
-    while queue:
-        v, cnt = queue.popleft()
+str = 'abcde'
+list_abcde = ['a', 'b', 'c', 'd', 'e']
 
-        for i in graph[v]:
-            if not visited[i]:
-                visited[i] = True
-                queue.append((i, cnt + 1))
-        
-        if cnt == K:
-            answer.append(v)
+print(str)
+print(str[::-1])
+print(str[2:])
 
-bfs(X)
-
-if len(answer) == 0:
-    print(-1)
-else:
-    # answer.sort()
-    for i in answer:
-        print(i)
+print(list_abcde)
+print(list_abcde[::-1])
+print(list_abcde[2:])
