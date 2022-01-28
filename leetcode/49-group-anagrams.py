@@ -6,6 +6,7 @@ class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         # 애너그램 문자를 키로 사용하고 값은 리스트로 하는 딕셔너리를 만든다
         anagrams = collections.defaultdict(list)
+        print(anagrams)
 
         # strs에 있는 단어들을 순회한다
         for word in strs:
