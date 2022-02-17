@@ -46,12 +46,11 @@ answer = []
 flag = True
 for num in num_list:
     while True:
-        if num == count:
+        if num <= count:
             break
         count += 1
         stack.append(count)
         answer.append('+')
-
     if stack[-1] == num:
         stack.pop()
         answer.append('-')
