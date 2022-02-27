@@ -1,39 +1,35 @@
 from collections import deque
 import sys
+f = sys.stdin.readline
 
-N, M, K, X = map(int, sys.stdin.readline().split())
+n, m, k, x = map(int, f().split())
+graph = [[] for _ in range(n+1)]
+distance = [0] * (n+1)
+visited = [False] * (n+1)
 
-graph = []
-for i in range(N+1):
-    graph.append([])
+for _ in range(m):
+    a, b = map(int, f().split())
+    graph[a].append(b)
 
-for i in range(M):
-    town, link = map(int, sys.stdin.readline().split())
-    graph[town].append(link)
-
-visited = [False] * (N+1)
-answer = []
-
-def bfs(x):
-    queue = deque()
-    queue.append((x, 0))
-
-    while queue:
-        v, cnt = queue.popleft()
-
-        for i in graph[v]:
+def bfs(start):
+    answer = []
+    q = deque([start])
+    visited[start] = True
+    distance[start] = 0
+    while q:
+        now = q.popleft()
+        for i in graph[now]:
             if not visited[i]:
                 visited[i] = True
-                queue.append((i, cnt + 1))
-        
-        if cnt == K:
-            answer.append(v)
+                q.append(i)
+                distance[i] = distance[now] + 1
+                if distance[i] == k:
+                    answer.append(i)
+    if len(answer) == 0:
+        print(-1)
+    else:
+        answer.sort()
+        for i in answer:
+            print(i, end='\n')
 
-bfs(X)
-
-if len(answer) == 0:
-    print(-1)
-else:
-    # answer.sort()
-    for i in answer:
-        print(i)
+bfs(x)
